@@ -14,9 +14,11 @@ curl -sSL https://raw.githubusercontent.com/zulfi125/nexus-testnet-setup/main/ne
 ---
 🔹 Other Commands
 Run these commands to manually manage the Nexus Prover:
-```bash
+
 Start Nexus Prover
+./start.sh
+
 ---
 View Logs (Last 50 lines)
-```bash
+
 ./logs.sh
