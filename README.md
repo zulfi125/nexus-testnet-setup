@@ -14,9 +14,9 @@ curl -sSL https://raw.githubusercontent.com/zulfi125/nexus-testnet-setup/main/ne
 
 ##🔹 Other Commands
 # Start Nexus Prover
-```bash
+
 ./start.sh
 
 # View Logs (Last 50 lines)
-```bash
+
 ./logs.sh
