@@ -6,8 +6,10 @@
 Run these commands to manually manage the Nexus Prover:  
 
 ### **Start Nexus Prover**  
-```bash
 ./start.sh
+
+### **View Logs (Last 50 lines)**  
+./logs.sh
 
 
 ---
