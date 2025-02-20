@@ -9,8 +9,6 @@ Run these commands to manually manage the Nexus Prover:
 ./start.sh
 
 ### **View Logs (Last 50 lines)**  
-./logs.sh
-
 tail -f ~/nexus_node.log
 
 ---
