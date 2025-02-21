@@ -9,48 +9,8 @@
 
 ## 📜 Installation  
 Run the following command to install Nexus CLI:  
-
-1.
- ```
- sudo apt update
 ```
-2.
-```
- sudo apt install pkg-config libssl-dev
-```
-3.
-```
-  sudo apt install protobuf-compiler
-```
-
-4.
-```
- mkdir nexus-cli
-```
-5.
-  ```
-      cd nexus-cli
-  ```
-
-6.
-```
-  curl — proto ‘=https’ — tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-7.
- ```
-   rustup target add riscv32i-unknown-none-elf
-```
-8.
-```
-   source $HOME/.cargo/env
-```
-9.
-```
-sudo apt upgrade git
-```
-10.
-```
-   curl https://cli.nexus.xyz/ | sh
+curl -sSL https://raw.githubusercontent.com/zulfi125/nexus-testnet-setup/main/nexus-setup.sh | bash
 ```
 --------------------------------------------------------------------------------------------------------------------------
 1. Press Y for terms
