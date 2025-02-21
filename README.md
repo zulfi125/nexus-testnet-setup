@@ -16,6 +16,7 @@ wget https://github.com/protocolbuffers/protobuf/releases/download/v30.0-rc1/pro
 sudo unzip protoc-30.0-rc-1-linux-x86_64.zip -d /usr/local/
 
 sudo chmod +x /usr/local/bin/protoc
+
 curl https://cli.nexus.xyz/ | sh
 
 
