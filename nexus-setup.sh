@@ -1,49 +1,41 @@
 #!/bin/bash
 
-# Update package lists
-sudo apt update -y
+set -e  # Exit script if any command fails
 
-# Install required dependencies
-sudo apt install -y build-essential gcc clang pkg-config libssl-dev git curl unzip
+# Create and navigate to nexus-cli directory
+mkdir -p nexus-cli
+cd nexus-cli
 
-# Remove old protobuf compiler if installed
-sudo apt remove -y protobuf-compiler || true
-
-# Install latest Protobuf compiler (protoc v3.21.12)
-PROTOC_ZIP=protoc-3.21.12-linux-x86_64.zip
-wget -q https://github.com/protocolbuffers/protobuf/releases/download/v3.21.12/$PROTOC_ZIP
-sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
-sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
-rm -f $PROTOC_ZIP
-
-# Verify installation
-protoc --version
-
-# Create and navigate to the working directory
-mkdir -p nexus-cli && cd nexus-cli
-
-# Install Rust
+# Install Rust and required target
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source $HOME/.cargo/env
-
-# Add Rust target
 rustup target add riscv32i-unknown-none-elf
 
-# Upgrade Git
-sudo apt upgrade -y git
+# Update system and install dependencies
+sudo apt update
+sudo apt install -y pkg-config libssl-dev protobuf-compiler
 
 # Install Nexus CLI
 curl https://cli.nexus.xyz/ | sh
 
-# Modify the build.rs file to enable `--experimental_allow_proto3_optional`
-BUILD_RS_FILE="/root/.nexus/network-api/clients/cli/build.rs"
-if [ -f "$BUILD_RS_FILE" ]; then
-    sed -i 's/protoc_rust::Codegen::new()/protoc_rust::Codegen::new().customize(protoc_rust::Customize { experimental_allow_proto3_optional: true, ..Default::default() })/' "$BUILD_RS_FILE"
+# Function to fix protobuf issue
+fix_protobuf() {
+    sudo apt-get remove -y protobuf-compiler
+    wget https://github.com/protocolbuffers/protobuf/releases/download/v30.0-rc1/protoc-30.0-rc-1-linux-x86_64.zip
+    sudo unzip protoc-30.0-rc-1-linux-x86_64.zip -d /usr/local/
+    sudo chmod +x /usr/local/bin/protoc
+    echo "Protobuf issue fixed."
+}
+
+# Function to restart Nexus CLI
+restart_nexus() {
+    curl https://cli.nexus.xyz/ | sh
+    echo "Nexus CLI restarted."
+}
+
+# Check if protobuf issue occurs and fix it if needed
+if protoc --version 2>&1 | grep -q "experimental_allow_proto3_optional"; then
+    fix_protobuf
 fi
 
-# Clean and rebuild Nexus CLI
-cd /root/.nexus/network-api/clients/cli
-cargo clean
-cargo build --release
-
-echo "Nexus CLI installation completed successfully!"
+echo "Nexus CLI setup completed. Get Node ID from: https://beta.nexus.xyz/"
