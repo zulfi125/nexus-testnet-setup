@@ -3,10 +3,8 @@
 # Update system packages
 sudo apt update
 
-# Download and install the latest Protocol Buffers (protobuf)
-wget https://github.com/protocolbuffers/protobuf/releases/download/v30.0-rc1/protoc-30.0-rc-1-linux-x86_64.zip
-sudo unzip protoc-30.0-rc-1-linux-x86_64.zip -d /usr/local/
-sudo chmod +x /usr/local/bin/protoc
+# Install dependencies
+sudo apt install -y pkg-config libssl-dev protobuf-compiler
 
 # Create and navigate to the nexus-cli directory
 mkdir -p nexus-cli
