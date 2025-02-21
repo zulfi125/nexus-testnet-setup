@@ -40,6 +40,7 @@ wget https://github.com/protocolbuffers/protobuf/releases/download/v30.0-rc1/pro
 sudo apt update && sudo apt install -y unzip
 ```
 ```
+3.1
 sudo unzip protoc-30.0-rc-1-linux-x86_64.zip -d /usr/local/
 ```
 
@@ -49,7 +50,9 @@ sudo unzip protoc-30.0-rc-1-linux-x86_64.zip -d /usr/local/
 sudo chmod +x /usr/local/bin/protoc
 ```
 ```
-   cd nexus-cli
+# 5. change directory:
+```
+cd nexus-cli
 ```
 ```
 source $HOME/.cargo/env
