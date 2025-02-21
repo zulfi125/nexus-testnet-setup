@@ -22,32 +22,32 @@ Run the following command to install Nexus CLI:
 ```
   sudo apt install protobuf-compiler
 ```
+
 4.
- ```
-  sudo apt-get remove -y protobuf-compiler
-```
-5.
 ```
  mkdir nexus-cli
 ```
-6.
+5.
   ```
       cd nexus-cli
   ```
 
-7.
+6.
 ```
   curl — proto ‘=https’ — tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-8.
+7.
  ```
    rustup target add riscv32i-unknown-none-elf
 ```
-9.
+8.
 ```
    source $HOME/.cargo/env
 ```
-
+9.
+```
+sudo apt upgrade git
+```
 10.
 ```
    curl https://cli.nexus.xyz/ | sh
