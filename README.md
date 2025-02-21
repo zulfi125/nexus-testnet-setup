@@ -51,6 +51,9 @@ sudo chmod +x /usr/local/bin/protoc
 ```
    cd nexus-cli
 ```
+```
+source $HOME/.cargo/env
+```
 # 5. Install the Nexus CLI
 
 
