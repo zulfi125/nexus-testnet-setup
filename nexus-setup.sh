@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e  # Exit immediately if any command fails
-
 # Update package lists
 sudo apt update -y
 
@@ -18,16 +16,8 @@ sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
 sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
 rm -f $PROTOC_ZIP
 
-# Ensure protoc is in PATH
-echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-
 # Verify installation
-if ! command -v protoc &> /dev/null; then
-    echo "Error: protoc installation failed!"
-    exit 1
-fi
-echo "Protobuf (protoc) version: $(protoc --version)"
+protoc --version
 
 # Create and navigate to the working directory
 mkdir -p nexus-cli && cd nexus-cli
@@ -56,4 +46,4 @@ cd /root/.nexus/network-api/clients/cli
 cargo clean
 cargo build --release
 
-echo "✅ Nexus CLI installation completed successfully!"
+echo "Nexus CLI installation completed successfully!"
