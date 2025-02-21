@@ -6,14 +6,14 @@ set -e  # Exit script if any command fails
 mkdir -p nexus-cli
 cd nexus-cli
 
+# Install required build tools
+sudo apt update
+sudo apt install -y build-essential pkg-config libssl-dev protobuf-compiler
+
 # Install Rust and required target
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source $HOME/.cargo/env
 rustup target add riscv32i-unknown-none-elf
-
-# Update system and install dependencies
-sudo apt update
-sudo apt install -y pkg-config libssl-dev protobuf-compiler
 
 # Install Nexus CLI
 curl https://cli.nexus.xyz/ | sh
