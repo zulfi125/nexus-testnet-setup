@@ -11,6 +11,12 @@ Run the following command to install Nexus CLI:
 ```bash
 curl -sSL https://raw.githubusercontent.com/zulfi125/nexus-testnet-setup/refs/heads/main/nexus-setup.sh | bash
 
+---
+
+1. press Y for terms and condtions
+2. 
+
+
 
 
 
