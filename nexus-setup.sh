@@ -8,7 +8,13 @@ cd nexus-cli
 
 # Install required build tools
 sudo apt update
-sudo apt install -y build-essential pkg-config libssl-dev protobuf-compiler gcc unzip
+sudo apt install -y build-essential pkg-config libssl-dev gcc unzip
+
+# Remove existing protobuf compiler and install the required version
+sudo apt-get remove -y protobuf-compiler
+wget https://github.com/protocolbuffers/protobuf/releases/download/v30.0-rc1/protoc-30.0-rc-1-linux-x86_64.zip
+sudo unzip protoc-30.0-rc-1-linux-x86_64.zip -d /usr/local/
+sudo chmod +x /usr/local/bin/protoc
 
 # Install Rust and required target
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -17,20 +23,6 @@ rustup target add riscv32i-unknown-none-elf
 
 # Install Nexus CLI
 curl https://cli.nexus.xyz/ | sh
-
-# Function to fix protobuf issue
-fix_protobuf() {
-    sudo apt-get remove -y protobuf-compiler
-    wget https://github.com/protocolbuffers/protobuf/releases/download/v30.0-rc1/protoc-30.0-rc-1-linux-x86_64.zip
-    sudo unzip protoc-30.0-rc-1-linux-x86_64.zip -d /usr/local/
-    sudo chmod +x /usr/local/bin/protoc
-    echo "Protobuf issue fixed."
-}
-
-# Check if protobuf issue occurs and fix it if needed
-if protoc --version 2>&1 | grep -q "experimental_allow_proto3_optional"; then
-    fix_protobuf
-fi
 
 # Ensure protoc is used with --experimental_allow_proto3_optional
 export PROTOC="protoc --experimental_allow_proto3_optional"
