@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Update package lists
+# Update system packages
 sudo apt update -y
 
 # Install required dependencies
-sudo apt install -y pkg-config libssl-dev protobuf-compiler git
+sudo apt install -y build-essential gcc clang pkg-config libssl-dev protobuf-compiler git
 
 # Create and navigate to the working directory
 mkdir -p nexus-cli && cd nexus-cli
