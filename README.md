@@ -6,15 +6,7 @@
 2. ETNER 2 for earn NEX points
 3. go to website and create node id and enter node id
    https://app.nexus.xyz
-   ## Fix for `=proto — experimental_allow_proto3_optional orchestrator.proto` Error
-
-If you encounter this error, run the following commands one by one:
-
-### Remove existing protobuf compiler
-```bash
-sudo apt-get remove -y protobuf-compiler
-
-   
+    
 ---
 
 ## 📜 Installation  
