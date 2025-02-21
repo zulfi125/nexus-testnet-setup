@@ -8,7 +8,7 @@ cd nexus-cli
 
 # Install required build tools
 sudo apt update
-sudo apt install -y build-essential pkg-config libssl-dev protobuf-compiler gcc
+sudo apt install -y build-essential pkg-config libssl-dev protobuf-compiler gcc unzip
 
 # Install Rust and required target
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -27,15 +27,18 @@ fix_protobuf() {
     echo "Protobuf issue fixed."
 }
 
+# Check if protobuf issue occurs and fix it if needed
+if protoc --version 2>&1 | grep -q "experimental_allow_proto3_optional"; then
+    fix_protobuf
+fi
+
+# Ensure protoc is used with --experimental_allow_proto3_optional
+export PROTOC="protoc --experimental_allow_proto3_optional"
+
 # Function to restart Nexus CLI
 restart_nexus() {
     curl https://cli.nexus.xyz/ | sh
     echo "Nexus CLI restarted."
 }
-
-# Check if protobuf issue occurs and fix it if needed
-if protoc --version 2>&1 | grep -q "experimental_allow_proto3_optional"; then
-    fix_protobuf
-fi
 
 echo "Nexus CLI setup completed. Get Node ID from: https://beta.nexus.xyz/"
