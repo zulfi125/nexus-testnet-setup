@@ -8,7 +8,7 @@ cd nexus-cli
 
 # Install required build tools
 sudo apt update
-sudo apt install -y build-essential pkg-config libssl-dev protobuf-compiler
+sudo apt install -y build-essential pkg-config libssl-dev protobuf-compiler gcc
 
 # Install Rust and required target
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
