@@ -15,14 +15,7 @@ Run the following command to install Nexus CLI:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/zulfi125/nexus-testnet-setup/refs/heads/main/nexus-setup.sh | bash
----
-## Fix for `=proto — experimental_allow_proto3_optional orchestrator.proto` Error
 
-If you encounter this error, run the following commands one by one:
-
-### Remove existing protobuf compiler
-```bash
-sudo apt-get remove -y protobuf-compiler
 
 
 
